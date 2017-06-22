@@ -1,8 +1,6 @@
-﻿using System;
-using System.ComponentModel;
-using System.Configuration;
+﻿using Microsoft.Win32;
+using System;
 using System.IO;
-using Microsoft.Win32;
 
 namespace Poloniex.LIB.Configuration
 {

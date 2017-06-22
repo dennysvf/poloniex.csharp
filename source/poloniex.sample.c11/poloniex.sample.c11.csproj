@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\poloniex.api.c11\poloniex.api.s16.csproj" />
+    <ProjectReference Include="..\poloniex.api.s16\poloniex.api.s16.csproj" />
   </ItemGroup>
 
 </Project>
