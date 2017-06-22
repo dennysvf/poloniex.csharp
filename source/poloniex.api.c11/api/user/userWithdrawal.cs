@@ -10,7 +10,7 @@ namespace Poloniex.API.User
 
         string Currency { get; }
         string Address { get; }
-        double Amount { get; }
+        decimal Amount { get; }
 
         DateTime Time { get; }
         string IpAddress { get; }
@@ -28,7 +28,7 @@ namespace Poloniex.API.User
         [JsonProperty("address")]
         public string Address { get; private set; }
         [JsonProperty("amount")]
-        public double Amount { get; private set; }
+        public decimal Amount { get; private set; }
 
         [JsonProperty("timestamp")]
         private ulong TimeInternal

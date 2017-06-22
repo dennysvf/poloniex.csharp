@@ -19,16 +19,6 @@ namespace Poloniex.LIB.Configuration
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static double Normalize(this double value)
-        {
-            return Math.Round(value, DoubleRoundingPrecisionDigits, MidpointRounding.AwayFromZero);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
         public static decimal Normalize(this decimal value)
         {
             return Math.Round(value, DoubleRoundingPrecisionDigits, MidpointRounding.AwayFromZero);
@@ -71,16 +61,6 @@ namespace Poloniex.LIB.Configuration
             }
 
             throw new ArgumentOutOfRangeException("value");
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static string ToStringNormalized(this double value)
-        {
-            return value.ToString("0." + new string('#', DoubleRoundingPrecisionDigits), CultureInfo.InvariantCulture);
         }
 
         /// <summary>

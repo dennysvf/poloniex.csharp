@@ -10,9 +10,9 @@ namespace Poloniex.API.Trade
 
         OrderType Type { get; }
 
-        double PricePerCoin { get; }
-        double AmountQuote { get; }
-        double AmountBase { get; }
+        decimal PricePerCoin { get; }
+        decimal AmountQuote { get; }
+        decimal AmountBase { get; }
     }
 
     public class TradeOrder : ITradeOrder
@@ -28,10 +28,10 @@ namespace Poloniex.API.Trade
         public OrderType Type { get; private set; }
 
         [JsonProperty("rate")]
-        public double PricePerCoin { get; private set; }
+        public decimal PricePerCoin { get; private set; }
         [JsonProperty("amount")]
-        public double AmountQuote { get; private set; }
+        public decimal AmountQuote { get; private set; }
         [JsonProperty("total")]
-        public double AmountBase { get; private set; }
+        public decimal AmountBase { get; private set; }
     }
 }
