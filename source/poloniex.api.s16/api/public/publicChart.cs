@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
-using Poloniex.LIB.Configuration;
+using XCT.BaseLib.Configuration;
 
-namespace Poloniex.API.Public
+namespace XCT.BaseLib.API.Poloniex.Public
 {
     /// <summary>Represents a time frame of a market.</summary>
     public enum ChartPeriod : int

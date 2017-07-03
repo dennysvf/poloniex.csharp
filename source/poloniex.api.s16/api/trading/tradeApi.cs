@@ -1,16 +1,16 @@
 ﻿using Newtonsoft.Json.Linq;
-using Poloniex.LIB.Configuration;
-using Poloniex.LIB.Types;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using XCT.BaseLib.Configuration;
+using XCT.BaseLib.Types;
 
-namespace Poloniex.API.Trade
+namespace XCT.BaseLib.API.Poloniex.Trade
 {
     /// <summary>
     /// https://poloniex.com/
     /// </summary>
-    public class XTradeApi
+    public class PTradeApi
     {
         private string __connect_key;
         private string __secret_key;
@@ -19,7 +19,7 @@ namespace Poloniex.API.Trade
         /// <summary>
         /// 
         /// </summary>
-        public XTradeApi(string connect_key, string secret_key, string end_point = "tradingApi")
+        public PTradeApi(string connect_key, string secret_key, string end_point = "tradingApi")
         {
             __connect_key = connect_key;
             __secret_key = secret_key;
@@ -27,14 +27,14 @@ namespace Poloniex.API.Trade
             __end_point = end_point;
         }
 
-        private XApiClient __trade_client = null;
+        private PoloniexClient __trade_client = null;
 
-        private XApiClient TradeClient
+        private PoloniexClient TradeClient
         {
             get
             {
                 if (__trade_client == null)
-                    __trade_client = new XApiClient(__connect_key, __secret_key);
+                    __trade_client = new PoloniexClient(__connect_key, __secret_key);
                 return __trade_client;
             }
         }

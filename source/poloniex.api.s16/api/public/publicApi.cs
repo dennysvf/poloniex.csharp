@@ -1,34 +1,33 @@
-﻿using Poloniex.LIB.Configuration;
-using Poloniex.LIB.Types;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using XCT.BaseLib.Configuration;
 
-namespace Poloniex.API.Public
+namespace XCT.BaseLib.API.Poloniex.Public
 {
     /// <summary>
     /// https://poloniex.com/
     /// </summary>
-    public class XPublicApi
+    public class PPublicApi
     {
         private string __end_point;
         
         /// <summary>
         /// 
         /// </summary>
-        public XPublicApi(string end_point = "public")
+        public PPublicApi(string end_point = "public")
         {
             __end_point = end_point;
         }
 
-        private XApiClient __public_client = null;
+        private PoloniexClient __public_client = null;
 
-        private XApiClient PublicClient
+        private PoloniexClient PublicClient
         {
             get
             {
                 if (__public_client == null)
-                    __public_client = new XApiClient();
+                    __public_client = new PoloniexClient();
                 return __public_client;
             }
         }

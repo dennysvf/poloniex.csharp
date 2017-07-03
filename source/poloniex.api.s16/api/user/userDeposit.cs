@@ -1,8 +1,8 @@
-﻿using System;
-using Newtonsoft.Json;
-using Poloniex.LIB.Configuration;
+﻿using Newtonsoft.Json;
+using System;
+using XCT.BaseLib.Configuration;
 
-namespace Poloniex.API.User
+namespace XCT.BaseLib.API.Poloniex.User
 {
     public interface IDeposit
     {

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Poloniex.LIB.Configuration;
+﻿using XCT.BaseLib.Configuration;
 
-namespace Poloniex.API.Public
+namespace XCT.BaseLib.API.Poloniex.Public
 {
     public interface IPublicOrder
     {

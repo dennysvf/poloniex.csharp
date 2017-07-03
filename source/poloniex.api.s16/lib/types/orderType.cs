@@ -1,4 +1,8 @@
-﻿namespace Poloniex.LIB.Types
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace XCT.BaseLib.Types
 {
     /// <summary>
     /// 
@@ -6,12 +10,12 @@
     public enum OrderType
     {
         /// <summary>
-        /// ask
+        /// bid
         /// </summary>
         Sell,
 
         /// <summary>
-        /// bid
+        /// ask
         /// </summary>
         Buy
     }

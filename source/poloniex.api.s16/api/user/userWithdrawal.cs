@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
-using Poloniex.LIB.Configuration;
+using XCT.BaseLib.Configuration;
 
-namespace Poloniex.API.User
+namespace XCT.BaseLib.API.Poloniex.User
 {
     public interface IWithdrawal
     {

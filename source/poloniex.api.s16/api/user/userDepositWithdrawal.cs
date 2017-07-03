@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Poloniex.API.User
+namespace XCT.BaseLib.API.Poloniex.User
 {
     public interface IDepositWithdrawal
     {

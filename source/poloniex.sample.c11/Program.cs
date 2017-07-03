@@ -1,9 +1,10 @@
-﻿using Poloniex.API.User;
-using Poloniex.API.Public;
-using Poloniex.API.Trade;
-using Poloniex.LIB.Types;
-using System;
+﻿using System;
 using System.Linq;
+using XCT.BaseLib.API.Poloniex;
+using XCT.BaseLib.API.Poloniex.Public;
+using XCT.BaseLib.API.Poloniex.Trade;
+using XCT.BaseLib.API.Poloniex.User;
+using XCT.BaseLib.Types;
 
 namespace Poloniex.Sample.Core
 {
@@ -14,7 +15,7 @@ namespace Poloniex.Sample.Core
         /// </summary>
         public static async void XPublicApi(int skip_step = 5)
         {
-            var _public_api = new XPublicApi();
+            var _public_api = new PPublicApi();
 
             if (skip_step == 1)
             {
@@ -63,7 +64,7 @@ namespace Poloniex.Sample.Core
         /// </summary>
         public static async void XUserApi(int skip_step = 5)
         {
-            var __info_api = new XUserApi("", "");
+            var __info_api = new PUserApi("", "");
 
             if (skip_step == 1)
             {
@@ -109,7 +110,7 @@ namespace Poloniex.Sample.Core
         /// </summary>
         public static async void XTradeApi(int skip_step = 4)
         {
-            var __trade_api = new XTradeApi("", "");
+            var __trade_api = new PTradeApi("", "");
 
             if (skip_step == 1)
             {

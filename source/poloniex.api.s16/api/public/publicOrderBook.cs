@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 
-namespace Poloniex.API.Public
+namespace XCT.BaseLib.API.Poloniex.Public
 {
     public interface IPublicOrderBook
     {

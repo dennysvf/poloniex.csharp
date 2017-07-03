@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
-using Poloniex.LIB.Configuration;
-using Poloniex.LIB.Types;
+﻿using XCT.BaseLib.Configuration;
+using XCT.BaseLib.Types;
+using Newtonsoft.Json;
 using System;
 
-namespace Poloniex.API.Public
+namespace XCT.BaseLib.API.Poloniex.Public
 {
     public interface IPublicTrade
     {

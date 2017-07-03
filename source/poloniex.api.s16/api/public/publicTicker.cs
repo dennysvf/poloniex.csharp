@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-using Poloniex.LIB.Configuration;
+using XCT.BaseLib.Configuration;
 
-namespace Poloniex.API.Public
+namespace XCT.BaseLib.API.Poloniex.Public
 {
     public interface IPublicTicker
     {
@@ -32,9 +32,9 @@ namespace Poloniex.API.Public
         public decimal Volume24HourQuote { get; internal set; }
 
         [JsonProperty("highestBid")]
-        public decimal OrderTopBuy { get; internal set; }
+        public decimal OrderTopBuy { get; set; }
         [JsonProperty("lowestAsk")]
-        public decimal OrderTopSell { get; internal set; }
+        public decimal OrderTopSell { get; set; }
         public decimal OrderSpread
         {
             get { return (OrderTopSell - OrderTopBuy).Normalize(); }

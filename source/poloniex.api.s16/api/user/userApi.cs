@@ -1,14 +1,14 @@
-﻿using Poloniex.LIB.Configuration;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using XCT.BaseLib.Configuration;
 
-namespace Poloniex.API.User
+namespace XCT.BaseLib.API.Poloniex.User
 {
     /// <summary>
     /// https://poloniex.com/
     /// </summary>
-    public class XUserApi
+    public class PUserApi
     {
         private string __connect_key;
         private string __secret_key;
@@ -17,7 +17,7 @@ namespace Poloniex.API.User
         /// <summary>
         /// 
         /// </summary>
-        public XUserApi(string connect_key, string secret_key, string end_point = "tradingApi")
+        public PUserApi(string connect_key, string secret_key, string end_point = "tradingApi")
         {
             __connect_key = connect_key;
             __secret_key = secret_key;
@@ -25,14 +25,14 @@ namespace Poloniex.API.User
             __end_point = end_point;
         }
 
-        private XApiClient __user_client = null;
+        private PoloniexClient __user_client = null;
 
-        private XApiClient UserClient
+        private PoloniexClient UserClient
         {
             get
             {
                 if (__user_client == null)
-                    __user_client = new XApiClient(__connect_key, __secret_key);
+                    __user_client = new PoloniexClient(__connect_key, __secret_key);
                 return __user_client;
             }
         }

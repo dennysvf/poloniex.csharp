@@ -1,65 +1,42 @@
 ﻿using Newtonsoft.Json;
-using Poloniex.LIB.Configuration;
-using Poloniex.LIB.Serialize;
+using OdinSdk.BaseLib.Configuration;
+using OdinSdk.BaseLib.Serialize;
 using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Numerics;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
-namespace Poloniex.API
+namespace XCT.BaseLib.API
 {
     /// <summary>
     /// 
     /// </summary>
     public class XApiClient : IDisposable
     {
-        private const string __api_url = "https://poloniex.com";
+        private string __api_url = "";
 
-        private string __connect_key;
-        private string __secret_key;
+        protected string __connect_key;
+        protected string __secret_key;
 
-        private const string __content_type = "application/x-www-form-urlencoded";
+        private const string __content_type = "application/json";
         private const string __user_agent = "btc-trading/5.2.2017.01";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public XApiClient(string api_url, string connect_key, string secret_key)
+        {
+            __api_url = api_url;
+            __connect_key = connect_key;
+            __secret_key = secret_key;
+        }
 
         private static char[] __to_digits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
-        private HMACSHA512 __encryptor = null;
-        public HMACSHA512 Encryptor
-        {
-            get
-            {
-                if (__encryptor == null)
-                    __encryptor = new HMACSHA512(Encoding.UTF8.GetBytes(__secret_key));
-
-                return __encryptor;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public XApiClient()
-        {
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public XApiClient(string connect_key, string secret_key)
-        {
-            __connect_key = connect_key;
-            __secret_key = secret_key;
-
-            Encryptor.Key = Encoding.UTF8.GetBytes(__secret_key);
-        }
-
-        protected byte[] EncodeHex(byte[] data)
+        public byte[] EncodeHex(byte[] data)
         {
             int l = data.Length;
             byte[] _result = new byte[l << 1];
@@ -74,7 +51,7 @@ namespace Poloniex.API
             return _result;
         }
 
-        protected string EncodeURIComponent(Dictionary<string, object> rgData)
+        public string EncodeURIComponent(Dictionary<string, object> rgData)
         {
             string _result = String.Join("&", rgData.Select((x) => String.Format("{0}={1}", x.Key, x.Value)));
 
@@ -87,21 +64,20 @@ namespace Poloniex.API
             return _result;
         }
 
-        protected IRestClient CreateJsonClient(string baseurl)
+        public IRestClient CreateJsonClient(string baseurl)
         {
             var _client = new RestClient(baseurl);
             {
                 _client.RemoveHandler(__content_type);
                 _client.AddHandler(__content_type, new RestSharpJsonNetDeserializer());
-
-                _client.Timeout = Timeout.Infinite;
+                _client.Timeout = 10 * 1000;
                 _client.UserAgent = __user_agent;
             }
 
             return _client;
         }
 
-        protected IRestRequest CreateJsonRequest(string resource, Method method = Method.GET)
+        public IRestRequest CreateJsonRequest(string resource, Method method = Method.GET)
         {
             var _request = new RestRequest(resource, method)
             {
@@ -112,60 +88,30 @@ namespace Poloniex.API
             return _request;
         }
 
-        private BigInteger CurrentHttpPostNonce
+        public Dictionary<string, object> GetHttpHeaders(string endpoint, Dictionary<string, object> rgData, string apiKey, string apiSecret)
         {
-            get;
-            set;
-        }
+            var _nonce = CUnixTime.NowMilli.ToString();
+            var _data = EncodeURIComponent(rgData);
+            var _message = String.Format("{0};{1};{2}", endpoint, _data, _nonce);
 
-        private string GetCurrentHttpPostNonce()
-        {
-            var _ne_nonce = new BigInteger(
-                                    Math.Round(
-                                        DateTime.UtcNow.Subtract(
-                                            UnixTime.DateTimeUnixEpochStart
-                                        )
-                                        .TotalMilliseconds * 1000, 
-                                        MidpointRounding.AwayFromZero
-                                    )
-                                );
+            var _secretKey = Encoding.UTF8.GetBytes(apiSecret);
+            var _hmac = new HMACSHA512(_secretKey);
+            _hmac.Initialize();
 
-            if (_ne_nonce > CurrentHttpPostNonce)
+            var _bytes = Encoding.UTF8.GetBytes(_message);
+            var _rawHmac = _hmac.ComputeHash(_bytes);
+
+            var _encoded = EncodeHex(_rawHmac);
+            var _signature = Convert.ToBase64String(_encoded);
+
+            var _headers = new Dictionary<string, object>();
             {
-                CurrentHttpPostNonce = _ne_nonce;
-            }
-            else
-            {
-                CurrentHttpPostNonce += 1;
+                _headers.Add("Api-Key", apiKey);
+                _headers.Add("Api-Sign", _signature);
+                _headers.Add("Api-Nonce", _nonce);
             }
 
-            return CurrentHttpPostNonce.ToString(CultureInfo.InvariantCulture);
-        }
-
-        private string HttpPostString(List<Parameter> dictionary)
-        {
-            var _result = "";
-
-            foreach (var _entry in dictionary)
-            {
-                var _value = _entry.Value as string;
-                if (_value == null)
-                    _result += "&" + _entry.Name+ "=" + _entry.Value;
-                else
-                    _result += "&" + _entry.Name + "=" + _value.Replace(' ', '+');
-            }
-
-            return _result.Substring(1);
-        }
-
-        private string ConvertHexString(byte[] value)
-        {
-            var _result = "";
-
-            for (var i = 0; i < value.Length; i++)
-                _result += value[i].ToString("x2", CultureInfo.InvariantCulture);
-
-            return _result;
+            return _headers;
         }
 
         /// <summary>
@@ -181,8 +127,7 @@ namespace Poloniex.API
             {
                 var _params = new Dictionary<string, object>();
                 {
-                    _params.Add("nonce", GetCurrentHttpPostNonce());
-
+                    _params.Add("endpoint", endpoint);
                     if (args != null)
                     {
                         foreach (var a in args)
@@ -190,18 +135,12 @@ namespace Poloniex.API
                     }
                 }
 
-                foreach (var _p in _params)
-                    _request.AddParameter(_p.Key, _p.Value);
+                var _headers = GetHttpHeaders(endpoint, _params, __connect_key, __secret_key);
+                foreach (var h in _headers)
+                    _request.AddHeader(h.Key, h.Value.ToString());
 
-                var _post_data = HttpPostString(_request.Parameters);
-                var _post_bytes = Encoding.UTF8.GetBytes(_post_data);
-                var _post_hash = Encryptor.ComputeHash(_post_bytes);
-
-                var _signature = ConvertHexString(_post_hash);
-                {
-                    _request.AddHeader("Key", __connect_key);
-                    _request.AddHeader("Sign", _signature);
-                }
+                foreach (var a in _params)
+                    _request.AddParameter(a.Key, a.Value);
             }
 
             var _client = CreateJsonClient(__api_url);

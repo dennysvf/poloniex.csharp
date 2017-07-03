@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Poloniex.API.User
+namespace XCT.BaseLib.API.Poloniex.User
 {
     /// <summary>
     /// 

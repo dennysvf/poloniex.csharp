@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
-using Poloniex.LIB.Configuration;
 using System;
+using XCT.BaseLib.Configuration;
 
-namespace Poloniex.API.Trade
+namespace XCT.BaseLib.API.Poloniex.Trade
 {
     public interface ITrade : ITradeOrder
     {

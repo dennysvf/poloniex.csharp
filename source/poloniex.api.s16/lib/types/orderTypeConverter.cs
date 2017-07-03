@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Poloniex.LIB.Types
+namespace XCT.BaseLib.Types
 {
     /// <summary>
     /// 
