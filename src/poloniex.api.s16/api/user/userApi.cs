@@ -1,7 +1,7 @@
-﻿using System;
+﻿using XCT.BaseLib.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using XCT.BaseLib.Configuration;
 
 namespace XCT.BaseLib.API.Poloniex.User
 {

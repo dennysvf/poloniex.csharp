@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
-using XCT.BaseLib.Configuration;
+﻿using XCT.BaseLib.Configuration;
 using XCT.BaseLib.Types;
+using Newtonsoft.Json;
 
 namespace XCT.BaseLib.API.Poloniex.Trade
 {

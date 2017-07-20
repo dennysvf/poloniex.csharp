@@ -143,13 +143,14 @@ namespace XCT.BaseLib.API.Poloniex
 
             var _client = CreateJsonClient(__api_url);
             {
-                var tcs = new TaskCompletionSource<T>();
-                _client.ExecuteAsync(_request, response =>
+                var _tcs = new TaskCompletionSource<IRestResponse>();
+                var _handle = _client.ExecuteAsync(_request, response =>
                 {
-                    tcs.SetResult(JsonConvert.DeserializeObject<T>(response.Content));
+                    _tcs.SetResult(response);
                 });
 
-                return await tcs.Task;
+                var _response = await _tcs.Task;
+                return JsonConvert.DeserializeObject<T>(_response.Content);
             }
         }
     }

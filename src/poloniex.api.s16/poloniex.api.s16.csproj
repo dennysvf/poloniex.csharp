@@ -31,6 +31,7 @@
     <PackageReference Include="RestSharp.NetCore" Version="105.2.3" />
     <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
     <PackageReference Include="System.Net.NetworkInformation" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>

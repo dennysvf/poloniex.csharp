@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using XCT.BaseLib.Configuration;
+using XCT.BaseLib.Types;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using XCT.BaseLib.Configuration;
-using XCT.BaseLib.Types;
 
 namespace XCT.BaseLib.API.Poloniex.Trade
 {

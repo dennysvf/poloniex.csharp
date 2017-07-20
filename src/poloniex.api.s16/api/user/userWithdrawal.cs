@@ -1,24 +1,28 @@
-﻿using Newtonsoft.Json;
+﻿using XCT.BaseLib.Configuration;
+using Newtonsoft.Json;
 using System;
-using XCT.BaseLib.Configuration;
 
 namespace XCT.BaseLib.API.Poloniex.User
 {
-    public interface IDeposit
+    public interface IWithdrawal
     {
+        ulong Id { get; }
+
         string Currency { get; }
         string Address { get; }
         decimal Amount { get; }
 
         DateTime Time { get; }
-        string TransactionId { get; }
-        uint Confirmations { get; }
+        string IpAddress { get; }
 
         string Status { get; }
     }
 
-    public class Deposit : IDeposit
+    public class Withdrawal : IWithdrawal
     {
+        [JsonProperty("withdrawalNumber")]
+        public ulong Id { get; private set; }
+
         [JsonProperty("currency")]
         public string Currency { get; private set; }
         [JsonProperty("address")]
@@ -31,12 +35,9 @@ namespace XCT.BaseLib.API.Poloniex.User
         {
             set { Time = value.UnixTimeStampToDateTime(); }
         }
-            
         public DateTime Time { get; private set; }
-        [JsonProperty("txid")]
-        public string TransactionId { get; private set; }
-        [JsonProperty("confirmations")]
-        public uint Confirmations { get; private set; }
+        [JsonProperty("ipAddress")]
+        public string IpAddress { get; private set; }
 
         [JsonProperty("status")]
         public string Status { get; private set; }

@@ -5,8 +5,6 @@ using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace XCT.BaseLib.API
@@ -16,13 +14,15 @@ namespace XCT.BaseLib.API
     /// </summary>
     public class XApiClient : IDisposable
     {
+        protected static CLogger __clogger = new CLogger();
+
         private string __api_url = "";
 
         protected string __connect_key;
         protected string __secret_key;
 
-        private const string __content_type = "application/json";
-        private const string __user_agent = "btc-trading/5.2.2017.01";
+        protected const string __content_type = "application/json";
+        protected const string __user_agent = "btc-trading/5.2.2017.01";
 
         /// <summary>
         /// 
@@ -70,7 +70,8 @@ namespace XCT.BaseLib.API
             {
                 _client.RemoveHandler(__content_type);
                 _client.AddHandler(__content_type, new RestSharpJsonNetDeserializer());
-                _client.Timeout = 10 * 1000;
+                _client.Timeout = 5 * 1000;
+                _client.ReadWriteTimeout = 32 * 1000;
                 _client.UserAgent = __user_agent;
             }
 
@@ -86,32 +87,6 @@ namespace XCT.BaseLib.API
             };
 
             return _request;
-        }
-
-        public Dictionary<string, object> GetHttpHeaders(string endpoint, Dictionary<string, object> rgData, string apiKey, string apiSecret)
-        {
-            var _nonce = CUnixTime.NowMilli.ToString();
-            var _data = EncodeURIComponent(rgData);
-            var _message = String.Format("{0};{1};{2}", endpoint, _data, _nonce);
-
-            var _secretKey = Encoding.UTF8.GetBytes(apiSecret);
-            var _hmac = new HMACSHA512(_secretKey);
-            _hmac.Initialize();
-
-            var _bytes = Encoding.UTF8.GetBytes(_message);
-            var _rawHmac = _hmac.ComputeHash(_bytes);
-
-            var _encoded = EncodeHex(_rawHmac);
-            var _signature = Convert.ToBase64String(_encoded);
-
-            var _headers = new Dictionary<string, object>();
-            {
-                _headers.Add("Api-Key", apiKey);
-                _headers.Add("Api-Sign", _signature);
-                _headers.Add("Api-Nonce", _nonce);
-            }
-
-            return _headers;
         }
 
         /// <summary>
@@ -135,23 +110,20 @@ namespace XCT.BaseLib.API
                     }
                 }
 
-                var _headers = GetHttpHeaders(endpoint, _params, __connect_key, __secret_key);
-                foreach (var h in _headers)
-                    _request.AddHeader(h.Key, h.Value.ToString());
-
                 foreach (var a in _params)
                     _request.AddParameter(a.Key, a.Value);
             }
 
             var _client = CreateJsonClient(__api_url);
             {
-                var tcs = new TaskCompletionSource<T>();
-                _client.ExecuteAsync(_request, response =>
+                var _tcs = new TaskCompletionSource<IRestResponse>();
+                var _handle = _client.ExecuteAsync(_request, response =>
                 {
-                    tcs.SetResult(JsonConvert.DeserializeObject<T>(response.Content));
+                    _tcs.SetResult(response);
                 });
 
-                return await tcs.Task;
+                var _response = await _tcs.Task;
+                return JsonConvert.DeserializeObject<T>(_response.Content);
             }
         }
 
@@ -174,13 +146,14 @@ namespace XCT.BaseLib.API
 
             var _client = CreateJsonClient(__api_url);
             {
-                var tcs = new TaskCompletionSource<T>();
-                _client.ExecuteAsync(_request, response =>
+                var _tcs = new TaskCompletionSource<IRestResponse>();
+                var _handle = _client.ExecuteAsync(_request, response =>
                 {
-                    tcs.SetResult(JsonConvert.DeserializeObject<T>(response.Content));
+                    _tcs.SetResult(response);
                 });
 
-                return await tcs.Task;
+                var _response = await _tcs.Task;
+                return JsonConvert.DeserializeObject<T>(_response.Content);
             }
         }
 
