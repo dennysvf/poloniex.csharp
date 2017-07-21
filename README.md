@@ -22,7 +22,9 @@ Read [LICENSE](LICENSE)
 
 Since I spent several days developing and testing this kit I would appreciate any donations.
 
-BTC: 15DAoUfaCanpBpTs7VQBK8dRmbQqEnF9WG
+- BTC: 15DAoUfaCanpBpTs7VQBK8dRmbQqEnF9WG
+
+- ETH: 0x556E7EdbcCd669a42f00c1Df53D550C00814B0e3
 
 ## Contact
 
