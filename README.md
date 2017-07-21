@@ -8,6 +8,12 @@ It may not be fully functional and is not responsible for any loss or bug caused
 
 We promise to continuously improve.
 
+## Tools
+
+- Visual Studio 2017 Preview 3.0
+
+- .net core 1.1, .net standard 1.6
+
 ## License
 
 Read [LICENSE](LICENSE)
