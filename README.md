@@ -1,4 +1,4 @@
-# Poloniex C# API SDK
+# Poloniex C# API SDK [![Build status](https://ci.appveyor.com/api/projects/status/dnp9i3t6sexv9tpa?svg=true)](https://ci.appveyor.com/project/lisa3907/poloniex-csharp)
 
 This SDK is intended to develop poloniex's API for bitcoin/ethereum trading with C#.
 
