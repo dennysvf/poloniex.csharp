@@ -99,7 +99,7 @@ namespace Poloniex.Sample.Core
 
             if (skip_step == 5)
             {
-                var _withdraw = await __info_api.Withdrawal("XRP", 10.15m, "rsG1sNifXJxGS2nDQ9zHyoe1S5APrtwpjV", "1000000578");
+                var _withdraw = await __info_api.Withdrawal("XRP", 10.15m, "");
                 if (_withdraw.IsGenerationSuccessful == true)
                     Console.WriteLine(_withdraw.Address);
             }
