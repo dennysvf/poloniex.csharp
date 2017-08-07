@@ -35,8 +35,8 @@ namespace XCT.BaseLib.API.Poloniex.Public
             {
                 output.Add(
                     new PublicOrder(
-                        decimal.Parse(orders[i][0], CultureInfo.InvariantCulture),
-                        decimal.Parse(orders[i][1], CultureInfo.InvariantCulture)
+                        decimal.Parse(orders[i][0], NumberStyles.Float),
+                        decimal.Parse(orders[i][1], NumberStyles.Float)
                     )
                 );
             }
