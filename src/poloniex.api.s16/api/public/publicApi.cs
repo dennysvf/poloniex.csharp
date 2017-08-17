@@ -52,7 +52,7 @@ namespace XCT.BaseLib.API.Poloniex.Public
         /// <param name="currency_pair"></param>
         /// <param name="depth"></param>
         /// <returns></returns>
-        public async Task<IPublicOrderBook> GetOrderBook(CurrencyPair currency_pair, uint depth)
+        public async Task<PublicOrderBook> GetOrderBook(CurrencyPair currency_pair, uint depth)
         {
             var _params = new Dictionary<string, object>();
             {
