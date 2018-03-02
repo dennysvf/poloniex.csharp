@@ -10,9 +10,9 @@ We promise to continuously improve.
 
 ## Tools
 
-- Visual Studio 2017 Preview 3.0
+- Visual Studio 2017
 
-- .net core 1.1, .net standard 1.6
+- .net core 2.0, .net standard 2.0, .net framework 4.6.1
 
 ## License
 
@@ -25,6 +25,12 @@ Since I spent several days developing and testing this kit I would appreciate an
 - BTC: 15DAoUfaCanpBpTs7VQBK8dRmbQqEnF9WG
 
 - ETH: 0x556E7EdbcCd669a42f00c1Df53D550C00814B0e3
+
+## History
+
+```
+2018/03/02: update .net core 1.1 to 2.0 & add .net framework 4.6.1 api library
+```
 
 ## Contact
 

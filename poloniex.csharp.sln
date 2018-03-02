@@ -1,17 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26621.2
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "poloniex.sample.c11", "src\poloniex.sample.c11\poloniex.sample.c11.csproj", "{F90E350F-7774-4987-B095-7C2731F0C2C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "poloniex.sample.c20", "src\poloniex.sample.c20\poloniex.sample.c20.csproj", "{F90E350F-7774-4987-B095-7C2731F0C2C7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EE36102D-AC13-4DED-802B-F265CB1DEE53}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "poloniex.api.s16", "src\poloniex.api.s16\poloniex.api.s16.csproj", "{C847116C-4349-4279-8B2D-55E54A8D69DF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EFFFF510-E675-4A31-B7AD-2EA3A7E60DAA}"
 EndProject
@@ -20,6 +18,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "logo-files", "logo-files", 
 		logo-files\poloniex.api.ico = logo-files\poloniex.api.ico
 		logo-files\poloniex.api.png = logo-files\poloniex.api.png
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "poloniex.api.n46", "src\poloniex.api.n46\poloniex.api.n46.csproj", "{964DA95F-F57C-4234-A5A8-6BBF6D00DE93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "poloniex.api.c20", "src\poloniex.api.c20\poloniex.api.c20.csproj", "{E2FF718F-9B0D-454C-B18A-18075268C6B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,17 +33,22 @@ Global
 		{F90E350F-7774-4987-B095-7C2731F0C2C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F90E350F-7774-4987-B095-7C2731F0C2C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F90E350F-7774-4987-B095-7C2731F0C2C7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C847116C-4349-4279-8B2D-55E54A8D69DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C847116C-4349-4279-8B2D-55E54A8D69DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C847116C-4349-4279-8B2D-55E54A8D69DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C847116C-4349-4279-8B2D-55E54A8D69DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{964DA95F-F57C-4234-A5A8-6BBF6D00DE93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{964DA95F-F57C-4234-A5A8-6BBF6D00DE93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{964DA95F-F57C-4234-A5A8-6BBF6D00DE93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{964DA95F-F57C-4234-A5A8-6BBF6D00DE93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2FF718F-9B0D-454C-B18A-18075268C6B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2FF718F-9B0D-454C-B18A-18075268C6B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2FF718F-9B0D-454C-B18A-18075268C6B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2FF718F-9B0D-454C-B18A-18075268C6B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F90E350F-7774-4987-B095-7C2731F0C2C7} = {EFFFF510-E675-4A31-B7AD-2EA3A7E60DAA}
-		{C847116C-4349-4279-8B2D-55E54A8D69DF} = {EFFFF510-E675-4A31-B7AD-2EA3A7E60DAA}
+		{964DA95F-F57C-4234-A5A8-6BBF6D00DE93} = {EFFFF510-E675-4A31-B7AD-2EA3A7E60DAA}
+		{E2FF718F-9B0D-454C-B18A-18075268C6B7} = {EFFFF510-E675-4A31-B7AD-2EA3A7E60DAA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {10D0D5D6-447B-4484-A230-BBDBAA48885C}
