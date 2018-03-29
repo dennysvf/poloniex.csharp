@@ -10,9 +10,9 @@ We promise to continuously improve.
 
 ## Tools
 
-- Visual Studio 2017
+- Microsfot Visual Studio community 2017 version 15.4.0
 
-- .net core 2.0, .net standard 2.0, .net framework 4.6.1
+- .net core 2.0, .net framework 4.7
 
 ## License
 
@@ -30,6 +30,8 @@ Since I spent several days developing and testing this kit I would appreciate an
 
 ```
 2018/03/02: update .net core 1.1 to 2.0 & add .net framework 4.6.1 api library
+
+2018-03-29: upgrade .net core 2.0 & net47
 ```
 
 ## Contact
